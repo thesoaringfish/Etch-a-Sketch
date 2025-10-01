@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="grid"></div>
+
+
+
+    <script>
+    const grid = document.getElementById("grid");
+    const size = 16; // grid dimension
+
+    for (let i = 0; i < size * size; i++) {
+      const cell = document.createElement("div");
+      cell.classList.add("cell");
+      grid.appendChild(cell);
+    }
+
+    </script>
+
+
+</body>
+</html>
