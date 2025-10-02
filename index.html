@@ -14,7 +14,7 @@
 
 
 
-    <script>
+<script>
 const container = document.getElementById('container');
 
 function createGrid(size) {
@@ -30,9 +30,26 @@ function createGrid(size) {
     cell.style.width = `${cellSize}px`;
     cell.style.height = `${cellSize}px`;
 
-    // Hover effect
+    // Track how many times this cell was hovered
+    cell.dataset.darkness = 0;
+
     cell.addEventListener('mouseenter', () => {
-      cell.style.backgroundColor = "black";
+      let darkness = parseInt(cell.dataset.darkness);
+
+      if (darkness === 0) {
+        // First time: assign random RGB color
+        const r = Math.floor(Math.random() * 256);
+        const g = Math.floor(Math.random() * 256);
+        const b = Math.floor(Math.random() * 256);
+        cell.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+        cell.style.opacity = 0.1; // start at 10% visibility
+      } else if (darkness < 10) {
+        // Darken by 10% each time
+        cell.style.opacity = (darkness + 1) / 10;
+      }
+
+      // Update hover count
+      cell.dataset.darkness = darkness + 1;
     });
 
     container.appendChild(cell);
@@ -57,6 +74,7 @@ resetBtn.addEventListener('click', () => {
     }
   }
 });
+
 
     </script>
 
